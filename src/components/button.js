@@ -1,7 +1,9 @@
 import classNames from "classnames";
-import propTypes from 'prop-types'
+import propTypes from 'prop-types';
+import { twMerge } from 'tailwind-merge'
+
 function Button({children,type,rounded,outlined,primary,secondary,success,warning,danger,...rest}) {
-    const classes = classNames(rest.className,'flex items-center px-5 py-1 border m-2 ', {
+    let classes = classNames(rest.className,'flex items-center px-5 py-1 border m-2 ml-10', {
         'bg-blue-700 border-blue-700 text-white': type === "primary",
         'bg-blue-400 border-blue-400 text-white': type === "secondary",
         "bg-green-500 border-green-700 text-white": type === "success",
@@ -15,6 +17,7 @@ function Button({children,type,rounded,outlined,primary,secondary,success,warnin
         "text-yellow-500 ": outlined && type === "warning",
         "text-red-600 ": outlined && type === "danger",
     })
+    classes=twMerge(classes);
     return (
         <div>
             <button  {...rest} className={classes}>{children}</button>

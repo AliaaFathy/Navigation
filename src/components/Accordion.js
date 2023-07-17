@@ -16,7 +16,7 @@ function Accordion({items}){
                return(
                    <div key={index}>
                        <div >
-                           <div className="flex items-center justify-between bg-gray-200 border border-gray-400 p-4 cursor-pointer" onClick={()=>handleClick(index)}>{item.header}
+                           <div className="flex items-center justify-between bg-gray-200 border border-gray-400 p-4 cursor-pointer ml-10" onClick={()=>handleClick(index)}>{item.header}
                               <span className='text-2xl'> {isExtended?<GoTriangleDown/>:<GoTriangleLeft/>}</span>
                            </div>
                            {isExtended&&<div className='p-6 border'>{item.content}</div>}
@@ -30,4 +30,4 @@ function Accordion({items}){
         </div>
     )
 }
-export default Accordion
+export default Accordion;

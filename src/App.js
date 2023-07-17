@@ -1,17 +1,35 @@
 import Button from "./components/button";
 import { GoAlert ,GoCodespaces} from "react-icons/go";
 import Accordion from "./components/Accordion";
+import DropDown from "./components/DropDown";
+import {useContext, useState} from "react";
+import Route from "./components/Route";
+import Link from "./components/Link";
+import AccordionPage from "./pages/AccordionPage";
+import DropDownPage from "./pages/dropDownPage";
+import ButtonPage from "./pages/buttonPage";
+import SideBar from "./components/SideBar";
+import { GrMenu } from "react-icons/gr";
+import NavigationContext from "./context/navigation";
+import useNavigation from "./hooks/useNavigation";
 
 
 function App(){
-    const itemList=[{id:"cddddmk",header:"React Course",
-        content:"this course is awesome and help you to understand all basics of Javascript  it is your first step to start work"},
-        {id:"njsds",header:"Javascript Course",content: "this course is awesome and help you to understand all basics of Javascript  it is your first step to start work" },
-        {header: "Angular Course",content: "this course is awesome and help you to understand all basics of Angular  it is your first step to start work"}]
+    const{menuShow,handleSelection}=useNavigation();
    return(
-       <div>
-           <Accordion items={itemList}></Accordion>
-
+       <div className='container mx-auto grid grid-cols-6 mt-4'>
+           {menuShow&&<SideBar></SideBar>}
+           <button className=' ml-3 absolute  text-blue-600'  onClick={handleSelection}><GrMenu className='text-xl'/>
+           </button>
+          <Route path='/Accordion'>
+              <AccordionPage></AccordionPage>
+          </Route>
+           <Route path='/dropDown'>
+               <DropDownPage></DropDownPage>
+           </Route>
+           <Route path='/button'>
+               <ButtonPage></ButtonPage>
+           </Route>
        </div>
    )
 }
