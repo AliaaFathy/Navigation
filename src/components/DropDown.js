@@ -1,22 +1,23 @@
-import {useState} from "react";
+import {useState,useEffect, useRef} from "react";
 import { GoChevronDown } from "react-icons/go";
 import Panel from "./Panel";
-import {useEffect, useRef} from "react";
 
 
 function DropDown({list,onChange,value}){
     const [isOpen,setIsOpen]=useState();
     const divEl = useRef();
+    console.log(divEl)
 
     useEffect(() => {
         const handler = (event) => {
-            if (!divEl.current.contains(event.target)) {
-                setIsOpen(false);
+            if(!divEl.current){
+                return
             }
-        };
-
+                if (!divEl.current.contains(event.target)) {
+                    setIsOpen(false);
+                }
+            };
         document.addEventListener('click', handler, true);
-
         return () => {
             document.removeEventListener('click', handler);
         };

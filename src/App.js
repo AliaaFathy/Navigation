@@ -12,15 +12,20 @@ import SideBar from "./components/SideBar";
 import { GrMenu } from "react-icons/gr";
 import NavigationContext from "./context/navigation";
 import useNavigation from "./hooks/useNavigation";
+import ModalPAge from "./pages/ModalPAge";
+import TablePage from "./pages/TablePage";
+import CounterPage from "./pages/counterPage";
 
 
 function App(){
     const{menuShow,handleSelection}=useNavigation();
    return(
        <div className='container mx-auto grid grid-cols-6 mt-4'>
-           {menuShow&&<SideBar></SideBar>}
-           <button className=' ml-3 absolute  text-blue-600'  onClick={handleSelection}><GrMenu className='text-xl'/>
+           <button className=' ml-3 absolute  text-blue-600'
+                   onClick={handleSelection}><GrMenu className='text-xl'/>
            </button>
+           {menuShow&&<SideBar></SideBar>}
+           <div className='col-span-5'>
           <Route path='/Accordion'>
               <AccordionPage></AccordionPage>
           </Route>
@@ -30,6 +35,16 @@ function App(){
            <Route path='/button'>
                <ButtonPage></ButtonPage>
            </Route>
+               <Route path='/modal'>
+                   <ModalPAge></ModalPAge>
+               </Route>
+               <Route path='/table'>
+                   <TablePage></TablePage>
+               </Route>
+               <Route path='/counter'>
+                   <CounterPage initialValue={10}></CounterPage>
+               </Route>
+       </div>
        </div>
    )
 }
